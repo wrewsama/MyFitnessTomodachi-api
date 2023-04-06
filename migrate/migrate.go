@@ -1,9 +1,8 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"github.com/wrewsama/MyFitnessTomodachi-api/initialisers"
-	"github.com/wrewsama/MyFitnessTomodachi-api/routes"
+	"github.com/wrewsama/MyFitnessTomodachi-api/models"
 )
 
 func init() {
@@ -12,7 +11,5 @@ func init() {
 }
 
 func main() {
-	r := gin.Default()
-	routes.RegisterRoutes(r)
-	r.Run()
+	initialisers.DB.AutoMigrate(&models.Food{})
 }
