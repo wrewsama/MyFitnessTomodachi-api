@@ -16,6 +16,18 @@ func GetAllFoods(c *gin.Context) {
 	})
 }
 
+func GetFoodById(c *gin.Context) {
+	id := c.Param("id")
+
+	var food models.Food
+
+	initialisers.DB.First(&food, id)
+
+	c.JSON(200, gin.H{
+		"food": food,
+	})
+}
+
 func CreateFood(c *gin.Context) {
 	var body struct {
 		Name string `json:"name"`
