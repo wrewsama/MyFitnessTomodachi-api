@@ -1,9 +1,17 @@
 package controllers
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/wrewsama/MyFitnessTomodachi-api/initialisers"
+	"github.com/wrewsama/MyFitnessTomodachi-api/models"
+)
 
-func GetFood(c *gin.Context) {
+func GetAllFoods(c *gin.Context) {
+	var foods []models.Food
+
+	initialisers.DB.Find(&foods)
+
 	c.JSON(200, gin.H{
-		"msg": "hi",
+		"foods": foods,
 	})
 }
