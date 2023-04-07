@@ -15,3 +15,34 @@ func GetAllFoods(c *gin.Context) {
 		"foods": foods,
 	})
 }
+
+func CreateFood(c *gin.Context) {
+	var body struct {
+		Name string `json:"name"`
+		Calories int `json:"calories"`
+		Protein int `json:"protein"`
+		Carbohydrates int `json:"carbohydrates"`
+		Fat int `json:"fat"`
+	}
+
+	c.Bind(&body)
+
+	food := models.Food{
+		Name: body.Name,
+		Calories: body.Calories,
+		Protein: body.Protein,
+		Carbohydrates: body.Carbohydrates,
+		Fat: body.Fat,
+	}
+
+	result := initialisers.DB.Create(&food)
+
+	if result.Error != nil {
+		c.Status(400)
+		return
+	}
+
+	c.JSON(200, gin.H{
+		"msg": "Food Added!",
+	})	
+}

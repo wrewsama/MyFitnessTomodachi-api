@@ -7,4 +7,5 @@ import (
 
 var RegisterRoutes = func(router *gin.Engine) {
 	router.GET("/food", controllers.GetAllFoods)
+	router.POST("/food", controllers.CreateFood)
 }
