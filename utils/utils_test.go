@@ -8,17 +8,64 @@ import (
 
 func TestGetMatches(t *testing.T) {
 	inputs := []models.Food{
-		{1, "cartwheel", "", 0, 0, 0, 0},
-		{2, "foobar", "", 0, 0, 0, 0},
-		{3, "wheel", "", 0, 0, 0, 0},
-		{4, "baz", "", 0, 0, 0, 0},
+		{
+			ID: 1, 
+			Name: "cartwheel", 
+			Unit: "", 
+			Calories: 0, 
+			Protein: 0, 
+			Carbohydrates: 0, 
+			Fat: 0,
+		},
+		{
+			ID: 2, 
+			Name: "foobar", 
+			Unit: "", 
+			Calories: 0, 
+			Protein: 0, 
+			Carbohydrates: 0, 
+			Fat: 0,
+		},
+		{
+			ID: 3, 
+			Name: "wheel", 
+			Unit: "", 
+			Calories: 0, 
+			Protein: 0, 
+			Carbohydrates: 0, 
+			Fat: 0,
+		},
+		{
+			ID: 4, 
+			Name: "baz", 
+			Unit: "", 
+			Calories: 0, 
+			Protein: 0, 
+			Carbohydrates: 0, 
+			Fat: 0,
+		},
 	}
 
 	outputs := GetMatches("whl", inputs)
 
 	expected := []models.Food{
-		{1, "cartwheel", "", 0, 0, 0, 0},
-		{3, "wheel", "", 0, 0, 0, 0},
+		{
+			ID: 1, 
+			Name: "cartwheel", 
+			Unit: "", Calories: 0, 
+			Protein: 0, 
+			Carbohydrates: 0, 
+			Fat: 0,
+		},
+		{
+			ID: 3, 
+			Name: "wheel", 
+			Unit: "", 
+			Calories: 0, 
+			Protein: 0, 
+			Carbohydrates: 0, 
+			Fat: 0,
+		},
 	}
 
 	if len(outputs) != len(expected) {
