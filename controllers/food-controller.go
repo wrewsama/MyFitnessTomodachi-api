@@ -4,17 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/wrewsama/MyFitnessTomodachi-api/initialisers"
 	"github.com/wrewsama/MyFitnessTomodachi-api/models"
+	"github.com/wrewsama/MyFitnessTomodachi-api/utils"
 )
-
-func GetAllFoods(c *gin.Context) {
-	var foods []models.Food
-
-	initialisers.DB.Find(&foods)
-
-	c.JSON(200, gin.H{
-		"foods": foods,
-	})
-}
 
 func GetFoodById(c *gin.Context) {
 	id := c.Param("id")
@@ -26,6 +17,27 @@ func GetFoodById(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"food": food,
 	})
+}
+
+func GetFoods(c *gin.Context) {
+	var foods []models.Food
+	initialisers.DB.Find(&foods)
+
+	query := c.Query("name")
+
+	if query == "" {
+		c.JSON(200, gin.H{
+			"foods": foods,
+			"temp": "temp",
+		})
+	} else {
+		filteredFoods := utils.GetMatches(query, foods) 
+	
+		c.JSON(200, gin.H{
+			"foods": filteredFoods,
+		})
+	}
+
 }
 
 func CreateFood(c *gin.Context) {
