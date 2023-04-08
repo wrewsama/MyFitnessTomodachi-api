@@ -7,12 +7,13 @@ import(
 var db *gorm.DB
 
 type Food struct {
-	gorm.Model
-	Name string `json:"name"`
-	Calories int `json:"calories"`
-	Protein int `json:"protein"`
-	Carbohydrates int `json:"carbohydrates"`
-	Fat int `json:"fat"`
+	ID uint `gorm:"primaryKey"` 
+	Name string  `gorm:"not null"`
+	Unit string `gorm:"not null"`
+	Calories uint 
+	Protein uint 
+	Carbohydrates uint 
+	Fat uint 
 }
 
 

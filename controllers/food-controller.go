@@ -30,17 +30,19 @@ func GetFoodById(c *gin.Context) {
 
 func CreateFood(c *gin.Context) {
 	var body struct {
-		Name string `json:"name"`
-		Calories int `json:"calories"`
-		Protein int `json:"protein"`
-		Carbohydrates int `json:"carbohydrates"`
-		Fat int `json:"fat"`
+		Name string 
+		Unit string 
+		Calories uint 
+		Protein uint 
+		Carbohydrates uint 
+		Fat uint 
 	}
 
 	c.Bind(&body)
 
 	food := models.Food{
 		Name: body.Name,
+		Unit: body.Unit,
 		Calories: body.Calories,
 		Protein: body.Protein,
 		Carbohydrates: body.Carbohydrates,
