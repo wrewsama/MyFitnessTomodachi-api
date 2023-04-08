@@ -60,3 +60,13 @@ func CreateFood(c *gin.Context) {
 		"msg": "Food Added!",
 	})	
 }
+
+func DeleteFood(c *gin.Context) {
+	id := c.Param("id")
+
+	initialisers.DB.Delete(&models.Food{}, id)
+
+	c.JSON(200, gin.H{
+		"msg": "Food Deleted!",
+	})	
+}
