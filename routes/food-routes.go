@@ -10,4 +10,5 @@ var RegisterRoutes = func(router *gin.Engine) {
 	router.GET("/food/:id", controllers.GetFoodById)
 	router.POST("/food", controllers.CreateFood)
 	router.DELETE("/food/:id", controllers.DeleteFood)
+	router.PUT("/food/:id", controllers.UpdateFood)
 }
