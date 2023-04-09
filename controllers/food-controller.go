@@ -28,7 +28,6 @@ func GetFoods(c *gin.Context) {
 	if query == "" {
 		c.JSON(200, gin.H{
 			"foods": foods,
-			"temp": "temp",
 		})
 	} else {
 		filteredFoods := utils.GetMatches(query, foods) 
