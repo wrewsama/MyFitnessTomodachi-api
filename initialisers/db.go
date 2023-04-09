@@ -1,16 +1,31 @@
-package initialisers 
+package initialisers
 
-import(
+import (
+	"fmt"
+	"log"
+	"os"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"os"
-	"log"
 )
 
 var DB *gorm.DB
 
 func Connect() {
-	dsn := os.Getenv("DSN")
+	sqluser := os.Getenv("SQLUSER")
+	password := os.Getenv("PASSWORD")
+	hostname := os.Getenv("HOSTNAME")
+	dbport := os.Getenv("DBPORT")
+	dbname := os.Getenv("DBNAME")
+
+	dsn :=  fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local",
+                        sqluser,
+						password,
+						hostname,
+						dbport,
+						dbname)
+	log.Printf("Connecting to %s", dsn)
+
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {

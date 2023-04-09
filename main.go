@@ -9,8 +9,6 @@ import (
 )
 
 func init() {
-	log.Println("Loading environment variables")
-	initialisers.LoadEnvVars()
 	log.Println("Connecting to Database")
 	initialisers.Connect()
 }
