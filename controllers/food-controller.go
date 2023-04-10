@@ -12,7 +12,12 @@ func GetFoodById(c *gin.Context) {
 
 	var food models.Food
 
-	initialisers.DB.First(&food, id)
+	result := initialisers.DB.First(&food, id)
+
+	if result.Error != nil {
+		c.Status(400)
+		return
+	}
 
 	c.JSON(200, gin.H{
 		"food": food,
@@ -86,7 +91,12 @@ func UpdateFood(c *gin.Context) {
 	id := c.Param("id")
 
 	var food models.Food
-	initialisers.DB.First(&food, id)
+	result := initialisers.DB.First(&food, id)
+
+	if result.Error != nil {
+		c.Status(400)
+		return
+	}
 
 	var body struct {
 		Name string 
