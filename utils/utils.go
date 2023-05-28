@@ -1,6 +1,8 @@
 package utils
 
 import (
+	"strings"
+
 	"github.com/lithammer/fuzzysearch/fuzzy"
 	"github.com/wrewsama/MyFitnessTomodachi-api/models"
 )
@@ -9,11 +11,11 @@ func GetMatches(query string, foods []models.Food) []models.Food {
 	// get a list of the food names
 	foodNames := make([]string, 0)
 	for _, food := range foods {
-		foodNames = append(foodNames, food.Name)
+		foodNames = append(foodNames, strings.ToLower(food.Name))
 	}
 
 	// use RankFind to sort by levenshtein distance
-	ranks := fuzzy.RankFind(query, foodNames)
+	ranks := fuzzy.RankFind(strings.ToLower(query), foodNames)
 
 	// use the original indexes in the Rank array to get foods matching query
 	res := make([]models.Food, 0)
